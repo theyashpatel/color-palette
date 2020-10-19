@@ -61,11 +61,11 @@ handleChange(event) {
     return (
       <div>
         <center>
-          <h1>Color Paletter Generator</h1>
+          <h1>Color Palette Generator</h1>
           <h5>by Yash Patel</h5>
           <h1>{this.state.divisions}</h1>
-          <button style={{margin: 10}} name="add" onClick={this.handleChange}>+</button>
-          <button style={{margin: 10}} name="sub" onClick={this.handleChange}>-</button>
+          <button style={{margin: 10, width:100, height:50, fontSize: 40}} name="add" onClick={this.handleChange}>+</button>
+          <button style={{margin: 10, width:100, height:50, fontSize:40}} name="sub" onClick={this.handleChange}>-</button>
         </center>
         {this.drawDivisions(this.state.divisions)}
       </div>
