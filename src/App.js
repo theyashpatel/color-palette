@@ -24,11 +24,20 @@ handleCopy(event) {
   window.navigator.clipboard.writeText(event.target.title)
 }
 
+getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 drawDivisions(noOfDivisions) {
   const items = []
   for (var i = 0; i < noOfDivisions; i++) {
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
-    randomColor = "#" + randomColor
+    var randomColor = this.getRandomColor()
+
     console.log(randomColor)
     items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{backgroundColor: randomColor, position: "absolute", bottom: 0, top: "50%", width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth/noOfDivisions) * i}}></div>)
   }
@@ -64,8 +73,8 @@ handleChange(event) {
           <h1>Color Palette Generator</h1>
           <h5>by Yash Patel</h5>
           <h1>{this.state.divisions}</h1>
-          <button style={{margin: 10, width:100, height:50, fontSize: 40}} name="add" onClick={this.handleChange}>+</button>
-          <button style={{margin: 10, width:100, height:50, fontSize:40}} name="sub" onClick={this.handleChange}>-</button>
+          <button style={{margin:5, width:100, height:50, fontSize: 25}} name="add" onClick={this.handleChange}>➕</button>
+          <button style={{margin:5, width:100, height:50, fontSize:25}} name="sub" onClick={this.handleChange}>➖</button>
         </center>
         {this.drawDivisions(this.state.divisions)}
       </div>
