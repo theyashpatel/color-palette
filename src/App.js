@@ -30,7 +30,7 @@ drawDivisions(noOfDivisions) {
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
     randomColor = "#" + randomColor
     console.log(randomColor)
-    items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{backgroundColor: randomColor, position: "absolute", bottom: 0, top: "30%", width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth/noOfDivisions) * i}}></div>)
+    items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{backgroundColor: randomColor, position: "absolute", bottom: 0, top: "50%", width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth/noOfDivisions) * i}}></div>)
   }
   return (
     <div>
