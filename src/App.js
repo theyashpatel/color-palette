@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Header, Icon, Segment } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -77,13 +78,23 @@ handleChange(event) {
     }
     return (
       <div>
-        <center>
-          <h1>Color Palette Generator</h1>
-          <h5>by Yash Patel</h5>
-          <h1>{this.state.divisions}</h1>
-          <button style={customStyle} name="add" onClick={this.handleChange}>+</button>
-          <button style={customStyle} name="sub" onClick={this.handleChange}>-</button>
-        </center>
+          <Segment textAlign="center" basic inverted padded="very">
+            <Header inverted as="h1" color="white">Color Palette Generator</Header>
+            <Header inverted as="h3" color="blue">by Yash Patel</Header>
+          </Segment>
+          <Segment.Group horizontal>
+            <Segment textAlign="center">
+              <Header as='h1' color='blue'>
+              {this.state.divisions}
+              </Header>
+            </Segment>
+            <Segment textAlign="center">
+              <Button primary name="add" onClick={this.handleChange}>+</Button>
+            </Segment>
+            <Segment textAlign="center">
+              <Button primary name="sub" onClick={this.handleChange}>-</Button>
+            </Segment>
+          </Segment.Group>
         {this.drawDivisions(this.state.divisions)}
       </div>
     )
