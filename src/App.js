@@ -67,14 +67,22 @@ handleChange(event) {
 }
 
   render() {
+    const customStyle = {
+      margin:5,
+      width:100,
+      height:50,
+      fontSize: 25,
+      backgroundColor: "light gray",
+      color: "black"
+    }
     return (
       <div>
         <center>
           <h1>Color Palette Generator</h1>
           <h5>by Yash Patel</h5>
           <h1>{this.state.divisions}</h1>
-          <button style={{margin:5, width:100, height:50, fontSize: 25}} name="add" onClick={this.handleChange}>➕</button>
-          <button style={{margin:5, width:100, height:50, fontSize:25}} name="sub" onClick={this.handleChange}>➖</button>
+          <button style={customStyle} name="add" onClick={this.handleChange}>+</button>
+          <button style={customStyle} name="sub" onClick={this.handleChange}>-</button>
         </center>
         {this.drawDivisions(this.state.divisions)}
       </div>
