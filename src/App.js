@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserView } from 'react-device-detect';
 import { Button, Header, Segment } from 'semantic-ui-react';
 import './App.css';
 import CustomHeader from './component/CustomHeader';
@@ -72,7 +73,9 @@ handleChange(event) {
     const colorTheme = this.state.theme
     return (
       <div>
-      <CustomHeader themeColor={colorTheme} />
+        <BrowserView>
+          <CustomHeader themeColor={colorTheme} />
+        </BrowserView>
       <Segment.Group horizontal>
       <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
         <Segment textAlign="center">
