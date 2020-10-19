@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
-import { Button, Divider, Grid, Header, Image, Segment } from 'semantic-ui-react';
+import { Button, Divider, Grid, Header, Segment } from 'semantic-ui-react';
 import './App.css';
 import CustomHeader from './component/CustomHeader';
 import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
-import myImage from './images/crop.jpeg';
 
 class App extends Component {
   constructor() {
@@ -102,8 +101,7 @@ class App extends Component {
                   <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header>
                 </Grid.Column>
                 <Grid.Column verticalAlign='middle'>
-                  <Header as="h5" textAlign="center" color={colorTheme}>
-                  <Image circular src={myImage} /> Yash Patel
+                  <Header as="h5" textAlign="center" color={colorTheme}>Yash Patel
                   </Header>
                 </Grid.Column>
               </Grid>
