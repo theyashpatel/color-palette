@@ -95,28 +95,30 @@ class App extends Component {
         {/* Mobile Stuff Begins Here */}
 
         <MobileView>
-        <Segment>
-              <Grid columns={2} relaxed='very'>
-                <Grid.Column  verticalAlign="middle">
-                  <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header>
-                </Grid.Column>
-                <Grid.Column verticalAlign='middle'>
-                  <Header as="h5" textAlign="center" color={colorTheme}>Yash Patel
-                  </Header>
-                </Grid.Column>
-              </Grid>
-              <Divider vertical>by</Divider>
-            </Segment>
           <Segment.Group vertical>
-            <Segment textAlign="center">
-              <Button.Group>
-                <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
-                <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
-              </Button.Group>
-            </Segment>
-            <Segment textAlign="center">
-              <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
-            </Segment>
+          <Segment>
+            <Grid columns={2} relaxed='very'>
+              <Grid.Column verticalAlign="middle">
+                <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header>
+              </Grid.Column>
+              <Grid.Column verticalAlign='middle'>
+                <Header as="h5" textAlign="center" color={colorTheme}>Yash Patel
+                  </Header>
+              </Grid.Column>
+            </Grid>
+            <Divider vertical>by</Divider>
+          </Segment>
+            <Segment.Group horizontal>
+              <Segment textAlign="center">
+                <Button.Group>
+                  <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
+                  <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
+                </Button.Group>
+              </Segment>
+              <Segment textAlign="center">
+                <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
+              </Segment>
+            </Segment.Group>
             <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
           </Segment.Group>
           {this.drawDivisions(this.state.divisions)}
