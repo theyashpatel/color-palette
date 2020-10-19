@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Segment } from 'semantic-ui-react';
+import { Button, Header, Segment } from 'semantic-ui-react';
 import './App.css';
+import CustomHeader from './component/CustomHeader';
+import CustomThemeSelect from './component/CustomThemeSelect';
+import getRandomColor from './data/HelperFunctions';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
+      theme: "grey",
       divisions: 2
     }
     this.handleChange = this.handleChange.bind(this)
@@ -25,21 +29,10 @@ handleCopy(event) {
   window.navigator.clipboard.writeText(event.target.title)
 }
 
-getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 drawDivisions(noOfDivisions) {
   const items = []
   for (var i = 0; i < noOfDivisions; i++) {
-    var randomColor = this.getRandomColor()
-
-    console.log(randomColor)
+    var randomColor = getRandomColor()
     items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{backgroundColor: randomColor, position: "absolute", bottom: 0, top: "50%", width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth/noOfDivisions) * i}}></div>)
   }
   return (
@@ -49,9 +42,14 @@ drawDivisions(noOfDivisions) {
   )
 }
 
+handleTheme = (event, result) => {
+  this.setState({
+    theme: result.value
+  })
+}
+
 handleChange(event) {
   const {name} = event.target
-  console.log(name)
   var value
   if (name === "add") {
     value = this.state.divisions + 1
@@ -71,36 +69,27 @@ handleChange(event) {
 }
 
   render() {
-    // const customStyle = {
-    //   margin:5,
-    //   width:100,
-    //   height:50,
-    //   fontSize: 25,
-    //   backgroundColor: "light gray",
-    //   color: "black"
-    // }
+    const colorTheme = this.state.theme
     return (
       <div>
-          <Segment textAlign="center" basic inverted padded="very">
-            <Header inverted as="h1" color="white">Color Palette Generator</Header>
-            <Header inverted as="h3" color="blue">by Yash Patel</Header>
-          </Segment>
-          <Segment.Group horizontal>
-            <Segment textAlign="center">
-              <Header as='h1' color="blue">
-              {this.state.divisions}
-              </Header>
-            </Segment>
-            <Segment textAlign="center">
-              <Button.Group>
-                <Button basic primary name="add" onClick={this.handleChange}>+</Button>
-                <Button  basic primary name="sub" onClick={this.handleChange}>-</Button>
-              </Button.Group>
-            </Segment>
-            <Segment textAlign="center">
-            <Button basic primary name="gen" onClick={this.handleChange}>Generate</Button>
-            </Segment>
-          </Segment.Group>
+      <CustomHeader themeColor={colorTheme} />
+      <Segment.Group horizontal>
+      <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
+        <Segment textAlign="center">
+          <Header as='h1' color={colorTheme}>
+          {this.state.divisions}
+          </Header>
+        </Segment>
+        <Segment textAlign="center">
+          <Button.Group>
+            <Button basic color={colorTheme} name="add" onClick={this.handleChange}>+</Button>
+            <Button  basic color={colorTheme} name="sub" onClick={this.handleChange}>-</Button>
+          </Button.Group>
+        </Segment>
+        <Segment textAlign="center">
+        <Button basic color={colorTheme} name="gen" onClick={this.handleChange}>Generate</Button>
+        </Segment>
+      </Segment.Group>
         {this.drawDivisions(this.state.divisions)}
       </div>
     )
