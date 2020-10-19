@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Divider, Grid, Header, Image, Segment } from 'semantic-ui-react';
 import './App.css';
 import CustomHeader from './component/CustomHeader';
 import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
+import myImage from './images/crop.jpeg';
 
 class App extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class App extends Component {
   }
 
   drawDivisions(noOfDivisions) {
-    const colorSize = isBrowser ? "30%" : "70%"
+    const colorSize = isBrowser ? "30%" : "60%"
     const items = []
     for (var i = 0; i < noOfDivisions; i++) {
       var randomColor = getRandomColor()
@@ -95,16 +96,20 @@ class App extends Component {
         {/* Mobile Stuff Begins Here */}
 
         <MobileView>
-          <Segment.Group piled>
-            <Segment textAlign="center">
-              <Header as="h3" color={colorTheme}>Color Palette</Header>
+        <Segment>
+              <Grid columns={2} relaxed='very'>
+                <Grid.Column  verticalAlign="middle">
+                  <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header>
+                </Grid.Column>
+                <Grid.Column verticalAlign='middle'>
+                  <Header as="h5" textAlign="center" color={colorTheme}>
+                  <Image circular src={myImage} /> Yash Patel
+                  </Header>
+                </Grid.Column>
+              </Grid>
+              <Divider vertical>by</Divider>
             </Segment>
-            <Segment textAlign="center">
-              <Header as="h5" color={colorTheme}>by Yash Patel</Header>
-            </Segment>
-          </Segment.Group>
           <Segment.Group vertical>
-            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
             <Segment textAlign="center">
               <Button.Group>
                 <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
@@ -114,6 +119,7 @@ class App extends Component {
             <Segment textAlign="center">
               <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
             </Segment>
+            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
           </Segment.Group>
           {this.drawDivisions(this.state.divisions)}
         </MobileView>

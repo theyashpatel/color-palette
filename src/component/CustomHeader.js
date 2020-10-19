@@ -1,5 +1,7 @@
 import React from 'react'
-import { Header, Divider, Grid, Segment } from 'semantic-ui-react';
+import { Header, Divider, Grid, Segment, Image } from 'semantic-ui-react';
+import myImage from '../images/crop.jpeg';
+
 function CustomHeader(props) {
     return (
         <Segment padded="very">
@@ -10,7 +12,8 @@ function CustomHeader(props) {
                   <Header className="customHeader" as="h1" color={props.themeColor}>Color Palette Generator</Header>
                 </Grid.Column>
                 <Grid.Column>
-                  <Header as="h1" color={props.themeColor}>Yash Patel</Header>
+                  <Header as="h1" color={props.themeColor}>
+                  <Image circular src={myImage} /> Yash Patel</Header>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
