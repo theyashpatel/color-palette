@@ -63,6 +63,8 @@ handleChange(event) {
     return (
       <div>
         <center>
+          <h1>Color Paletter Generator</h1>
+          <h5>by Yash Patel</h5>
           <h1>{this.state.divisions}</h1>
           <button style={{margin: 10}} name="add" onClick={this.handleChange}>+</button>
           <button style={{margin: 10}} name="sub" onClick={this.handleChange}>-</button>
