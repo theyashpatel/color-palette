@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserView } from 'react-device-detect';
+import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
 import { Button, Header, Segment } from 'semantic-ui-react';
 import './App.css';
 import CustomHeader from './component/CustomHeader';
@@ -31,10 +31,11 @@ class App extends Component {
   }
 
   drawDivisions(noOfDivisions) {
+    const colorSize = isBrowser ? "30%" : "70%"
     const items = []
     for (var i = 0; i < noOfDivisions; i++) {
       var randomColor = getRandomColor()
-      items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{ backgroundColor: randomColor, position: "absolute", bottom: 0, top: "50%", width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth / noOfDivisions) * i }}></div>)
+      items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{ backgroundColor: randomColor, position: "absolute", bottom: 0, top: colorSize, width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth / noOfDivisions) * i }}></div>)
     }
     return (
       <div>
@@ -49,8 +50,8 @@ class App extends Component {
     })
   }
 
-  handleChange(event) {
-    const { name } = event.target
+  handleChange(event, result) {
+    const { name } = result
     var value
     if (name === "add") {
       value = this.state.divisions + 1
@@ -76,25 +77,46 @@ class App extends Component {
       <div>
         <BrowserView>
           <CustomHeader themeColor={colorTheme} />
+          <Segment.Group horizontal>
+            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
+            <Segment textAlign="center">
+              <Button.Group>
+                <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
+                <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
+              </Button.Group>
+            </Segment>
+            <Segment textAlign="center">
+              <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
+            </Segment>
+          </Segment.Group>
+          {this.drawDivisions(this.state.divisions)}
         </BrowserView>
-        <Segment.Group horizontal>
-          <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
-          <Segment textAlign="center">
-            <Header as='h1' color={colorTheme}>
-              {this.state.divisions}
-            </Header>
-          </Segment>
-          <Segment textAlign="center">
-            <Button.Group>
-              <Button basic color={colorTheme} name="add" onClick={this.handleChange}>+</Button>
-              <Button basic color={colorTheme} name="sub" onClick={this.handleChange}>-</Button>
-            </Button.Group>
-          </Segment>
-          <Segment textAlign="center">
-            <Button basic color={colorTheme} name="gen" onClick={this.handleChange}>Generate</Button>
-          </Segment>
-        </Segment.Group>
-        {this.drawDivisions(this.state.divisions)}
+
+        {/* Mobile Stuff Begins Here */}
+
+        <MobileView>
+          <Segment.Group piled>
+            <Segment textAlign="center">
+              <Header as="h3" color={colorTheme}>Color Palette</Header>
+            </Segment>
+            <Segment textAlign="center">
+              <Header as="h5" color={colorTheme}>by Yash Patel</Header>
+            </Segment>
+          </Segment.Group>
+          <Segment.Group vertical>
+            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
+            <Segment textAlign="center">
+              <Button.Group>
+                <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
+                <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
+              </Button.Group>
+            </Segment>
+            <Segment textAlign="center">
+              <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
+            </Segment>
+          </Segment.Group>
+          {this.drawDivisions(this.state.divisions)}
+        </MobileView>
       </div>
     )
   }
