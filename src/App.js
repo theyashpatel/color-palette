@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Segment } from 'semantic-ui-react';
+import { Button, Header, Segment } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -68,14 +68,14 @@ handleChange(event) {
 }
 
   render() {
-    const customStyle = {
-      margin:5,
-      width:100,
-      height:50,
-      fontSize: 25,
-      backgroundColor: "light gray",
-      color: "black"
-    }
+    // const customStyle = {
+    //   margin:5,
+    //   width:100,
+    //   height:50,
+    //   fontSize: 25,
+    //   backgroundColor: "light gray",
+    //   color: "black"
+    // }
     return (
       <div>
           <Segment textAlign="center" basic inverted padded="very">
