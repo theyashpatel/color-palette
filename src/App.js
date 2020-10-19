@@ -21,9 +21,7 @@ componentWillUnmount() {
 }
 
 handleCopy(event) {
-  const token = window.navigator.clipboard.writeText(event.target.title)
-  console.log("copied")
-  window.navigator.clipboard.readText().then((status, result) => console.log(status, result))
+  window.navigator.clipboard.writeText(event.target.title)
 }
 
 drawDivisions(noOfDivisions) {
