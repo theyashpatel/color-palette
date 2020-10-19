@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Header, Icon, Segment } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -56,6 +56,9 @@ handleChange(event) {
   if (name === "add") {
     value = this.state.divisions + 1
   }
+  else if (name === "gen") {
+    value = this.state.divisions
+  }
   else {
     value = this.state.divisions - 1
   }
@@ -84,15 +87,18 @@ handleChange(event) {
           </Segment>
           <Segment.Group horizontal>
             <Segment textAlign="center">
-              <Header as='h1' color='blue'>
+              <Header as='h1' color="blue">
               {this.state.divisions}
               </Header>
             </Segment>
             <Segment textAlign="center">
-              <Button primary name="add" onClick={this.handleChange}>+</Button>
+              <Button.Group>
+                <Button basic primary name="add" onClick={this.handleChange}>+</Button>
+                <Button  basic primary name="sub" onClick={this.handleChange}>-</Button>
+              </Button.Group>
             </Segment>
             <Segment textAlign="center">
-              <Button primary name="sub" onClick={this.handleChange}>-</Button>
+            <Button basic primary name="gen" onClick={this.handleChange}>Generate</Button>
             </Segment>
           </Segment.Group>
         {this.drawDivisions(this.state.divisions)}
