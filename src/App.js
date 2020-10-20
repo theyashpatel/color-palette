@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
+import { BrowserView, isBrowser, isMobile, MobileView } from 'react-device-detect';
+import { Flip, toast, ToastContainer } from 'react-toastify';
 import { Button, Divider, Grid, Header, Segment } from 'semantic-ui-react';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import CustomHeader from './component/CustomHeader';
 import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
@@ -20,6 +22,18 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize)
+    const message = isMobile? "Tap": "Cick"
+    toast( message + " on color to copy HEX code.", {
+      position: "bottom-center",
+      transition: Flip,
+      type:"info",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      })
   }
 
   componentWillUnmount() {
@@ -28,6 +42,17 @@ class App extends Component {
 
   handleCopy(event) {
     window.navigator.clipboard.writeText(event.target.title)
+    toast(event.target.title + " is copied.", {
+      position: "bottom-center",
+      transition: Flip,
+      type:"info",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      })
   }
 
   drawDivisions(noOfDivisions) {
@@ -75,6 +100,7 @@ class App extends Component {
     // this is a change
     return (
       <div>
+        <ToastContainer />
         <BrowserView>
           <CustomHeader themeColor={colorTheme} />
           <Segment.Group horizontal>
