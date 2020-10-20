@@ -95,7 +95,7 @@ class App extends Component {
         {/* Mobile Stuff Begins Here */}
 
         <MobileView>
-          <Segment.Group vertical>
+          <Segment.Group vertical="true">
           <Segment>
             <Grid columns={2} relaxed='very'>
               <Grid.Column verticalAlign="middle">
