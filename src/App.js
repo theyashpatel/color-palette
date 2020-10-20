@@ -8,6 +8,8 @@ import CustomHeader from './component/CustomHeader';
 import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
 import AppLogo from './images/rang.png'
+import ReactTooltip from 'react-tooltip';
+import nameOfColor from './data/NameTheColor';
 
 class App extends Component {
   constructor() {
@@ -42,12 +44,12 @@ class App extends Component {
   }
 
   handleCopy(event) {
-    window.navigator.clipboard.writeText(event.target.title)
-    toast(event.target.title + " is copied.", {
+    window.navigator.clipboard.writeText(event.target.id)
+    toast(nameOfColor(event.target.id) + " ("+ event.target.id + ") is copied.", {
       position: "bottom-center",
       transition: Flip,
       type:"info",
-      autoClose: 1500,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -55,13 +57,13 @@ class App extends Component {
       progress: undefined,
       })
   }
-
+ 
   drawDivisions(noOfDivisions) {
     const colorSize = isBrowser ? "30%" : "60%"
     const items = []
     for (var i = 0; i < noOfDivisions; i++) {
       var randomColor = getRandomColor()
-      items.push(<div onClick={this.handleCopy} key={i} title={randomColor} style={{ backgroundColor: randomColor, position: "absolute", bottom: 0, top: colorSize, width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth / noOfDivisions) * i }}></div>)
+      items.push(<div id={randomColor} data-tip={nameOfColor(randomColor)} onClick={this.handleCopy} key={i} style={{ backgroundColor: randomColor, position: "absolute", bottom: 0, top: colorSize, width: window.innerWidth / noOfDivisions, marginLeft: (window.innerWidth / noOfDivisions) * i }}></div>)
     }
     return (
       <div>
@@ -102,6 +104,7 @@ class App extends Component {
     return (
       <div>
         <ToastContainer />
+        <ReactTooltip place="top" type="dark" effect="float" delayShow={500}/>
         <BrowserView>
           <CustomHeader themeColor={colorTheme} />
           <Segment.Group horizontal>
