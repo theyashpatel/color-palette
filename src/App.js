@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserView, isBrowser, isMobile, MobileView } from 'react-device-detect';
 import { Flip, toast, ToastContainer } from 'react-toastify';
-import { Button, Divider, Grid, Header, Segment } from 'semantic-ui-react';
+import { Button, Divider, Grid, Header, Image, Segment } from 'semantic-ui-react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomHeader from './component/CustomHeader';
 import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
+import AppLogo from './images/rang.png'
 
 class App extends Component {
   constructor() {
@@ -125,7 +126,8 @@ class App extends Component {
           <Segment>
             <Grid columns={2} relaxed='very'>
               <Grid.Column verticalAlign="middle">
-                <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header>
+                {/* <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header> */}
+                <Image verticalAlign="middle" src={AppLogo} size="small" />
               </Grid.Column>
               <Grid.Column verticalAlign='middle'>
                 <Header as="h5" textAlign="center" color={colorTheme}>Yash Patel
