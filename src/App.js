@@ -10,8 +10,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      theme: "grey",
-      divisions: 2
+      theme: "blue",
+      divisions: 5
     }
     this.handleChange = this.handleChange.bind(this)
   }
