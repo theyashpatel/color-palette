@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Divider, Header, Image, Menu } from 'semantic-ui-react'
-import AppLogo from '../../images/rang.png'
+import { Header, Menu } from 'semantic-ui-react'
 
 export default function TopHeader(props) {
 

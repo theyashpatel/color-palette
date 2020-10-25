@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
 import { Flip, toast } from 'react-toastify';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import CustomHeader from './component/CustomHeader';
 import getRandomColor from './data/HelperFunctions';
 import nameOfColor from './data/NameTheColor';
 import AddOns from './component/AddOns';
@@ -79,8 +78,6 @@ class App extends Component {
   }
 
   render() {
-    const colorTheme = "blue"
-    // this is a change
     return (
       <div>
         <BrowserView>

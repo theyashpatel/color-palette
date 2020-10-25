@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import isMobile from 'react-device-detect';
-import { Flip, toast, ToastContainer } from 'react-toastify';
+import { Flip, toast } from 'react-toastify';
 import '../App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactTooltip from 'react-tooltip';

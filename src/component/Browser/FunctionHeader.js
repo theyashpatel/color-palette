@@ -1,17 +1,10 @@
 import React from 'react'
 import { Button, Icon, Menu } from 'semantic-ui-react'
 
-export default function FuctionHeader() {
-
-    function handleItemClick() {
-
-    }
-
-    const activeItem = 'reload'
+export default function FunctionHeader() {
 
     const functionBtnStyle = {
-        marginLeft: "5px",
-        backgroundColor: "rgba(0,0,0,0.05)"
+        marginLeft: "5px"
     }
 
     return (
