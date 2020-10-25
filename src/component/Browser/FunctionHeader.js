@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Icon, Menu } from 'semantic-ui-react'
+import { Button, Header, Icon, Menu } from 'semantic-ui-react'
 
 export default function FunctionHeader(props) {
 
@@ -8,34 +8,40 @@ export default function FunctionHeader(props) {
     }
 
     return (
-        <Menu secondary borderless style={{ height: "100%", paddingLeft: "7px", paddingRight: "5px" }}>
+        <Menu secondary borderless style={{ height: "100%", borderBottom: "1px solid lightgray", paddingLeft: "7px", paddingRight: "5px" }}>
+
+            <Menu.Item>
+            <Header as="h5" style={{ color: "gray", fontFamily: '"Lucida Console", Courier, monospace' }}><i>Press Space Bar to generate pallete.</i>
+            </Header>
+
+            </Menu.Item>
+
             <Menu.Item position="right">
 
                 <Button
-                    primary
                     basic
-                    icon 
+                    color="black"
+                    icon="add"
+                    content="View"
                     style={functionBtnStyle}
-                    >
-                    <Icon name='add' />
-                </Button>
+                    onClick={props.functions.addColorView}
+                />
                 <Button
-                    primary
                     basic
-                    icon 
+                    color="black"
+                    icon="minus"
+                    content="View"
                     style={functionBtnStyle}
-                    >
-                    <Icon name='minus' />
-                </Button>
+                    onClick={props.functions.minusColorView}
+                />
                 <Button
-                    primary
                     basic
-                    icon 
+                    color="black"
+                    icon="refresh"
+                    content="Generate"
                     style={functionBtnStyle}
-                    onClick={props.reloadColor}
-                    >
-                    <Icon name='refresh' />
-                </Button>
+                    onClick={props.functions.reloadColor}
+                />
 
             </Menu.Item>
         </Menu>

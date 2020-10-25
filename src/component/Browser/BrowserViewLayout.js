@@ -10,7 +10,7 @@ export default function BrowserViewLayout() {
     return (
         <BrowserRouter>
             <div className="browser view layout" style={{ height: '100vh' }}>
-                <div className="browser top header" style={{ height: '5%' }}>
+                <div className="browser top header" style={{ height: '7%' }}>
                     <TopHeader />
                 </div>
                 <Switch>

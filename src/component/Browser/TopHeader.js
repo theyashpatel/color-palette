@@ -25,16 +25,15 @@ export default function TopHeader(props) {
     }
 
     return (
-        <Menu inverted color="blue" secondary borderless style={{ height: "100%", paddingLeft: "7px", paddingRight: "7px" }}>
+        <Menu  secondary borderless style={{ height: "100%", borderBottom: "1px solid lightgray", paddingLeft: "7px", paddingRight: "7px" }}>
 
             <Menu.Item
                 className="applicationlogo"
                 as={Link}
                 to="/"
                 name='generate'
-                onClick={handleItemClick}
             >
-                <Header as="h1" style={{ color: "white", letterSpacing: "3px", fontFamily: '"Lucida Console", Courier, monospace' }}><i>VIBGYOR</i></Header>
+                <Header as="h1" style={{ color: "black", letterSpacing: "5px", fontFamily: '"Lucida Console", Courier, monospace' }}><i>VIBGYOR</i></Header>
             </Menu.Item>
 
             <Menu.Item
