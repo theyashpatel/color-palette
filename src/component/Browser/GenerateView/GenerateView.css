@@ -1,0 +1,22 @@
+.browser.function.header {
+}
+.colorGroupView {
+    height: 95%;
+    display: flex;
+}
+
+.colorViewDiv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+.lockImg {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    opacity: 0.5;
+  }

@@ -6,7 +6,7 @@ export default function ExploreView() {
     return (
         <div className="browser main body" style={{ height: '90%' }}>
                     <Image src={LoadingLogoTwo} size="medium" />
-                    <h1>EXPLORING</h1>
+                    <h1>EXPLORE. COMMING SOON!</h1>
                 </div>
     )
 }

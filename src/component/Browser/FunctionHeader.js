@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Icon, Menu } from 'semantic-ui-react'
 
-export default function FunctionHeader() {
+export default function FunctionHeader(props) {
 
     const functionBtnStyle = {
         marginLeft: "5px"
     }
 
     return (
-        <Menu secondary borderless style={{ height: "100%", borderBottom: "1px solid lightgray", paddingLeft: "7px", paddingRight: "5px" }}>
+        <Menu secondary borderless style={{ height: "100%", paddingLeft: "7px", paddingRight: "5px" }}>
             <Menu.Item position="right">
 
                 <Button
@@ -32,9 +32,11 @@ export default function FunctionHeader() {
                     basic
                     icon 
                     style={functionBtnStyle}
+                    onClick={props.reloadColor}
                     >
                     <Icon name='refresh' />
                 </Button>
+
             </Menu.Item>
         </Menu>
     )

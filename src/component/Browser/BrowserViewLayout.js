@@ -1,8 +1,8 @@
 import React from 'react'
 import TopHeader from './TopHeader'
 import '../../css/BrowserTopMenu.css'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import GenerateView from './GenerateView'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import GenerateView from './GenerateView/GenerateView'
 import ExploreView from './ExploreView'
 
 export default function BrowserViewLayout() {
@@ -17,6 +17,9 @@ export default function BrowserViewLayout() {
                     <Route exact path="/" component={GenerateView} />
                     <Route path="/generate" component={GenerateView} />
                     <Route path="/explore" component={ExploreView} />
+                    <Route path="/*">
+                        <Redirect to="/generate" />
+                    </Route>
                 </Switch>
             </div>
         </BrowserRouter>

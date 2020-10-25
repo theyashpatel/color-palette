@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Header, Menu } from 'semantic-ui-react'
 
 export default function TopHeader(props) {
 
-    const [activeItem, setActiveItem] = useState('generate')
+    const [activeItem, setActiveItem] = useState("generate")
+
+    useEffect(() => {
+        setActiveItem(() => {
+            const currentItem = window.location.pathname.slice(1,)
+            if (currentItem === "") return "generate"
+            return currentItem
+        })
+    }, [])
 
     function handleItemClick(event, result) {
         setActiveItem(() => {
@@ -17,7 +25,7 @@ export default function TopHeader(props) {
     }
 
     return (
-        <Menu inverted color="blue" secondary borderless style={{ height: "100%", borderBottom: "1px solid lightgray", paddingLeft: "7px", paddingRight: "7px" }}>
+        <Menu inverted color="blue" secondary borderless style={{ height: "100%", paddingLeft: "7px", paddingRight: "7px" }}>
 
             <Menu.Item
                 className="applicationlogo"
