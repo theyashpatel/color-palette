@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { BrowserView, isBrowser, isMobile, MobileView } from 'react-device-detect';
-import { Flip, toast, ToastContainer } from 'react-toastify';
-import { Button, Divider, Grid, Header, Image, Segment } from 'semantic-ui-react';
+import { BrowserView, isBrowser, MobileView } from 'react-device-detect';
+import { Flip, toast } from 'react-toastify';
+import { Button, Header, Segment } from 'semantic-ui-react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomHeader from './component/CustomHeader';
-import CustomThemeSelect from './component/CustomThemeSelect';
 import getRandomColor from './data/HelperFunctions';
-import AppLogo from './images/rang.png'
-import ReactTooltip from 'react-tooltip';
 import nameOfColor from './data/NameTheColor';
+import AddOns from './component/AddOns';
+import BrowserViewLayout from './component/Browser/BrowserViewLayout';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      theme: "blue",
       divisions: 5
     }
     this.handleChange = this.handleChange.bind(this)
@@ -25,18 +23,6 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize)
-    const message = isMobile? "Tap": "Cick"
-    toast( message + " on color to copy HEX code.", {
-      position: "bottom-center",
-      transition: Flip,
-      type:"info",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      })
   }
 
   componentWillUnmount() {
@@ -45,19 +31,19 @@ class App extends Component {
 
   handleCopy(event) {
     window.navigator.clipboard.writeText(event.target.id)
-    toast(nameOfColor(event.target.id) + " ("+ event.target.id + ") is copied.", {
+    toast(nameOfColor(event.target.id) + " (" + event.target.id + ") is copied.", {
       position: "bottom-center",
       transition: Flip,
-      type:"info",
+      type: "info",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
-      })
+    })
   }
- 
+
   drawDivisions(noOfDivisions) {
     const colorSize = isBrowser ? "30%" : "60%"
     const items = []
@@ -70,12 +56,6 @@ class App extends Component {
         {items}
       </div>
     )
-  }
-
-  handleTheme = (event, result) => {
-    this.setState({
-      theme: result.value
-    })
   }
 
   handleChange(event, result) {
@@ -99,60 +79,31 @@ class App extends Component {
   }
 
   render() {
-    const colorTheme = this.state.theme
+    const colorTheme = "blue"
     // this is a change
     return (
       <div>
-        <ToastContainer />
-        <ReactTooltip place="top" type="dark" effect="float" delayShow={500}/>
         <BrowserView>
-          <CustomHeader themeColor={colorTheme} />
+        <AddOns />
+        <BrowserViewLayout />
+          {/* <CustomHeader themeColor={colorTheme} />
           <Segment.Group horizontal>
-            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
             <Segment textAlign="center">
               <Button.Group>
-                <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
-                <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
+                <Button primary name="add" onClick={this.handleChange} icon="add circle" />
+                <Button primary color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
               </Button.Group>
             </Segment>
             <Segment textAlign="center">
-              <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
+              <Button primary name="gen" onClick={this.handleChange} icon="refresh" />
             </Segment>
           </Segment.Group>
-          {this.drawDivisions(this.state.divisions)}
+          {this.drawDivisions(this.state.divisions)} */}
         </BrowserView>
-
         {/* Mobile Stuff Begins Here */}
 
         <MobileView>
-          <Segment.Group vertical="true">
-          <Segment>
-            <Grid columns={2} relaxed='very'>
-              <Grid.Column verticalAlign="middle">
-                {/* <Header as="h1" textAlign="center" color={colorTheme}>Color Palette</Header> */}
-                <Image verticalAlign="middle" src={AppLogo} size="small" />
-              </Grid.Column>
-              <Grid.Column verticalAlign='middle'>
-                <Header as="h5" textAlign="center" color={colorTheme}>Yash Patel
-                  </Header>
-              </Grid.Column>
-            </Grid>
-            <Divider vertical>by</Divider>
-          </Segment>
-            <Segment.Group horizontal>
-              <Segment textAlign="center">
-                <Button.Group>
-                  <Button basic color={colorTheme} name="add" onClick={this.handleChange} icon="add circle" />
-                  <Button basic color={colorTheme} name="sub" onClick={this.handleChange} icon="minus circle" />
-                </Button.Group>
-              </Segment>
-              <Segment textAlign="center">
-                <Button basic color={colorTheme} name="gen" onClick={this.handleChange} icon="refresh" />
-              </Segment>
-            </Segment.Group>
-            <CustomThemeSelect theme={colorTheme} handleTheme={this.handleTheme} />
-          </Segment.Group>
-          {this.drawDivisions(this.state.divisions)}
+            <Header style={{position: "absolute", top: "40%", textAlign: "center"}} as="h1">Working on the mobile version of the app. Until then please use the desktop version.</Header>
         </MobileView>
       </div>
     )
