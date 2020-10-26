@@ -13,7 +13,12 @@ export default function GenerateView() {
       })
 
       useEffect(() => {
-        
+        var htmlElement = document.querySelector("html");
+        htmlElement.style.overflow = "hidden"
+
+        return () => {
+            htmlElement.style.overflow = "visible"
+        }
       },[])
 
       function generateColorView() {
