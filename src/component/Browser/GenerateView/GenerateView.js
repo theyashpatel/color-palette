@@ -7,6 +7,7 @@ import './GenerateView.css'
 export default function GenerateView() {
     const [refresh, doRefresh] = useState(0)
     const [noOfColorViews, setNoOfColorViews] =useState(5)
+    const [isIsolated, setIsIsolated] = useState(false)
 
     useKeypress(' ', () => {
         reloadColor()
@@ -24,6 +25,7 @@ export default function GenerateView() {
       function generateColorView() {
 
         const payload = {
+            margin: isIsolated ? "5px" : "",
             refresh: refresh,
             viewWidth: window.innerWidth / noOfColorViews
         }
@@ -64,6 +66,8 @@ export default function GenerateView() {
     }
 
       const functionHeaderPayload = {
+          isIsolated: isIsolated,
+          setIsIsolated: setIsIsolated,
           noOfColorViews: noOfColorViews,
           minusColorView: minusColorView,
           addColorView: addColorView,

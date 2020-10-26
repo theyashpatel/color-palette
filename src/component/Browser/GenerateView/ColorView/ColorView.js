@@ -36,7 +36,7 @@ export default function ColorView({ payload }) {
     const colorViewStyle = {
         width: payload.viewWidth,
         backgroundColor: divcolor,
-        margin: "5px"
+        margin: payload.margin
     }
 
     const lockImgStyle = {
