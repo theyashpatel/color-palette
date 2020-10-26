@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Grid, Header, Popup, Segment } from 'semantic-ui-react';
+import { Checkbox, Grid, Popup } from 'semantic-ui-react';
 
 export default function SettingsPopup({trigger, payload}) {
     return (

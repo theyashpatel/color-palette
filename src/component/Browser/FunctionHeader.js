@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Menu, Popup } from 'semantic-ui-react'
+import { Button, Header, Menu } from 'semantic-ui-react'
 import SettingsPopup from './GenerateView/SettingsPopup'
 
 export default function FunctionHeader({payload}) {
