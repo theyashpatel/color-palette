@@ -3,7 +3,6 @@ import isMobile from 'react-device-detect';
 import { Flip, toast } from 'react-toastify';
 import '../App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import ReactTooltip from 'react-tooltip';
 
 export default function AddOns() {
 
@@ -25,7 +24,6 @@ export default function AddOns() {
     return (
         <div>
             {/* <ToastContainer /> */}
-            <ReactTooltip place="top" type="dark" effect="float" delayShow={500} />
         </div>
     )
 }
