@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button, Header, Icon, Menu } from 'semantic-ui-react'
+import React from 'react'
+import { Button, Header, Menu } from 'semantic-ui-react'
 
 export default function FunctionHeader(props) {
 

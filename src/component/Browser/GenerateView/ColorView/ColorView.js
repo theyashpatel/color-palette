@@ -11,16 +11,20 @@ export default function ColorView(props) {
     const [divcolor, setDivColor] = useState("lightseagreen")
   
     useEffect(() => {
-      setColor()
-    }, [props.refresh])
+
+        if (!isFixed) {
+            setDivColor(() =>  getRandomColor())
+          }
+
+    }, [props.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
   
     function handleMouseEnter() {
-      setfixvisibility(pstate => setfixvisibility(null))
+      setfixvisibility(() => setfixvisibility(null))
     }
   
     function handleMouseLeave() {
       if (!isFixed) {
-        setfixvisibility(pstate => setfixvisibility("hidden"))
+        setfixvisibility(() => setfixvisibility("hidden"))
       }
     }
   
@@ -29,21 +33,9 @@ export default function ColorView(props) {
         return !pstate
       })
     }
-  
-    function setColor() {
-      const colors = ["lightseagreen", "lightlategray", "lightsalmon", "lightblue", "lightcoral", "lightpink", "lightyellow"]
-      if (!isFixed) {
-        setDivColor(pstate =>  getRandomColor())
-      }
-    }
-
     const colorViewStyle = {
         width: props.viewWidth,
         backgroundColor: divcolor
-    }
-
-    const imageStyle = {
-
     }
 
     const lockImgStyle = {

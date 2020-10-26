@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Image } from 'semantic-ui-react'
 import useKeypress from '../../Helper/UseKeyPress'
 import FunctionHeader from '../FunctionHeader'
 import ColorView from './ColorView/ColorView'
