@@ -25,7 +25,7 @@ export default function GenerateView() {
       function generateColorView() {
 
         const payload = {
-            margin: isIsolated ? "5px" : "",
+            margin: isIsolated ? "6px" : "",
             refresh: refresh,
             viewWidth: window.innerWidth / noOfColorViews
         }

@@ -9,10 +9,7 @@ export default function SettingsPopup({trigger, payload}) {
             trigger={trigger} on='click'
             position="bottom center"
         >
-            <Grid>
-                <Grid.Row centered>
-                    <Checkbox label="Monkey Colors" />
-                </Grid.Row>
+            <Grid padded="horizontally">
                 <Grid.Row centered>
                     <Checkbox
                         checked={payload.isIsolated}
