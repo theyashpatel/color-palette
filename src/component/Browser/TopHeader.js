@@ -7,6 +7,7 @@ export default function TopHeader(props) {
     const [activeItem, setActiveItem] = useState("generate")
 
     useEffect(() => {
+        console.log("TopHeader: ", window.location.pathname)
         setActiveItem(() => {
             const currentItem = window.location.pathname.slice(1,)
             if (currentItem === "") return "generate"
