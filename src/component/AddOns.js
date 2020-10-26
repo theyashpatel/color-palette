@@ -8,7 +8,6 @@ import ReactTooltip from 'react-tooltip';
 export default function AddOns() {
 
     useEffect(() => {
-        console.log("I am here")
         const message = isMobile ? "Tap" : "Cick"
         toast(message + " on color to copy HEX code.", {
           position: "bottom-center",
