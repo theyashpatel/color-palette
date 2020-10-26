@@ -19,22 +19,22 @@ export default function FunctionHeader(props) {
             <Menu.Item position="right">
 
                 <Button
-                    disabled={props.functions.noOfColorViews === 10 ? true : false}
+                    disabled={props.payload.noOfColorViews === 10 ? true : false}
                     basic
                     color="black"
                     icon="add"
                     content="View"
                     style={functionBtnStyle}
-                    onClick={props.functions.addColorView}
+                    onClick={props.payload.addColorView}
                 />
                 <Button
-                    disabled={props.functions.noOfColorViews === 2 ? true : false}
+                    disabled={props.payload.noOfColorViews === 2 ? true : false}
                     basic
                     color="black"
                     icon="minus"
                     content="View"
                     style={functionBtnStyle}
-                    onClick={props.functions.minusColorView}
+                    onClick={props.payload.minusColorView}
                 />
                 <Button
                     basic
@@ -42,9 +42,8 @@ export default function FunctionHeader(props) {
                     icon="refresh"
                     content="Generate"
                     style={functionBtnStyle}
-                    onClick={props.functions.reloadColor}
+                    onClick={props.payload.reloadColor}
                 />
-                {console.log("Function header: ", props.functions.noOfColorViews)}
 
             </Menu.Item>
         </Menu>

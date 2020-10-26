@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import useKeypress from '../../Helper/UseKeyPress'
 import FunctionHeader from '../FunctionHeader'
 import ColorView from './ColorView/ColorView'
@@ -12,12 +12,22 @@ export default function GenerateView() {
         reloadColor()
       })
 
+      useEffect(() => {
+        
+      },[])
+
       function generateColorView() {
-            var views = []
-            for (var i = 0; i < noOfColorViews; i++) {
-                views.push(<ColorView key={i} refresh={refresh} viewWidth={window.innerWidth / noOfColorViews}/>)
-            }
-            return views
+
+        const payload = {
+            refresh: refresh,
+            viewWidth: window.innerWidth / noOfColorViews
+        }
+
+        var views = []
+        for (var i = 0; i < noOfColorViews; i++) {
+            views.push(<ColorView key={i} payload={payload}/>)
+        }
+        return views
       }
           
       function reloadColor() {
@@ -48,7 +58,7 @@ export default function GenerateView() {
         document.activeElement.blur(); // removes focus from the button after clicking it so that shortcuts work
     }
 
-      const functions = {
+      const functionHeaderPayload = {
           noOfColorViews: noOfColorViews,
           minusColorView: minusColorView,
           addColorView: addColorView,
@@ -58,7 +68,7 @@ export default function GenerateView() {
     return (
         <div className="browser sub body" style={{ height: "93%" }}>
             <div className="browser function header" style={{ height: '7%' }}>
-                <FunctionHeader functions={functions} />
+                <FunctionHeader payload={functionHeaderPayload} />
             </div>
             <div
                 className="colorGroupView">

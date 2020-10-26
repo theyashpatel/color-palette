@@ -4,7 +4,7 @@ import '../GenerateView.css'
 import lock from './lock.png'
 import unlock from './unlock.png'
 
-export default function ColorView(props) {
+export default function ColorView({ payload }) {
 
     const [fixvisibility, setfixvisibility] = useState("hidden")
     const [isFixed, setIsFixed] = useState(false)
@@ -16,7 +16,7 @@ export default function ColorView(props) {
             setDivColor(() =>  getRandomColor())
           }
 
-    }, [props.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [payload.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
   
     function handleMouseEnter() {
       setfixvisibility(() => setfixvisibility(null))
@@ -34,8 +34,9 @@ export default function ColorView(props) {
       })
     }
     const colorViewStyle = {
-        width: props.viewWidth,
-        backgroundColor: divcolor
+        width: payload.viewWidth,
+        backgroundColor: divcolor,
+        // margin: "5px"
     }
 
     const lockImgStyle = {
