@@ -24,17 +24,32 @@ export default function GenerateView() {
         doRefresh(pstate => {
           return pstate + 1
         })
+        document.activeElement.blur();
       }
 
       function addColorView() {
-          setNoOfColorViews(pstate => pstate + 1)
+          setNoOfColorViews(pstate => {
+              if (pstate < 10) {
+                  return pstate + 1
+              }
+              return pstate
+            })
+          document.activeElement.blur();
       }
 
       function minusColorView() {
-        setNoOfColorViews(pstate => pstate - 1)
+        setNoOfColorViews(pstate => {
+            console.log(pstate)
+            if (pstate > 2) {
+                return pstate - 1
+            }
+            return pstate
+        })
+        document.activeElement.blur(); // removes focus from the button after clicking it so that shortcuts work
     }
 
       const functions = {
+          noOfColorViews: noOfColorViews,
           minusColorView: minusColorView,
           addColorView: addColorView,
           reloadColor: reloadColor
