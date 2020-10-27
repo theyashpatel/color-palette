@@ -14,7 +14,10 @@ export default function SettingsPopup({trigger, payload}) {
                     <Checkbox
                         checked={payload.isIsolated}
                         label="Isolate Colors"
-                        onChange={() => payload.setIsIsolated(pState => !pState)}
+                        onChange={() => {
+                            payload.setIsIsolated(pState => !pState)
+                            document.activeElement.blur();
+                        }}
                         />
                 </Grid.Row>
             </Grid>
