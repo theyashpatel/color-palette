@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import getRandomColor from '../../../../data/HelperFunctions'
+import { calculateLuminance, getRandomColor, hexToRgb, hexToRgbDecimal } from '../../../../data/HelperFunctions'
 import '../GenerateView.css'
 import lock from './lock.png'
 import unlock from './unlock.png'
@@ -14,6 +14,8 @@ export default function ColorView({ payload }) {
 
         if (!isFixed) {
             setDivColor(() =>  getRandomColor())
+            const hexCode = getRandomColor()
+            console.log("Luminance :",hexCode, calculateLuminance(hexCode))
           }
 
     }, [payload.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
