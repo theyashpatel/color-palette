@@ -2,10 +2,10 @@ import React from 'react'
 import { Button, Header, Menu } from 'semantic-ui-react'
 import SettingsPopup from './GenerateView/SettingsPopup'
 
-export default function FunctionHeader({payload}) {
+export default function FunctionHeader({ payload }) {
 
     const functionBtnStyle = {
-        marginLeft: "5px"
+        border: "0px"
     }
 
     const settingsPopupPayload = {
@@ -25,38 +25,46 @@ export default function FunctionHeader({payload}) {
                 <SettingsPopup
                     payload={settingsPopupPayload}
                     trigger={
-                        <Button
-                            basic
-                            color="black"
-                            icon="setting"
-                            style={functionBtnStyle}
-                        />
-                    }/>
+                        <Button.Group basic style={functionBtnStyle}>
+                            <Button
+                                icon="setting"
+                            />
+                        </Button.Group>
+                    } />
+                <Button.Group basic style={functionBtnStyle}>
+                    <Button
+                        color="black"
+                        icon="undo"
+                    />
+                    <Button
+                        color="black"
+                        icon="redo"
+                    />
+                </Button.Group>
 
-                <Button
-                    disabled={payload.noOfColorViews === 10 ? true : false}
-                    basic
-                    color="black"
-                    icon="add"
-                    style={functionBtnStyle}
-                    onClick={payload.addColorView}
-                />
-                <Button
-                    disabled={payload.noOfColorViews === 2 ? true : false}
-                    basic
-                    color="black"
-                    icon="minus"
-                    style={functionBtnStyle}
-                    onClick={payload.minusColorView}
-                />
-                <Button
-                    basic
-                    color="black"
-                    icon="refresh"
-                    content="Generate"
-                    style={functionBtnStyle}
-                    onClick={payload.reloadColor}
-                />
+                <Button.Group basic style={functionBtnStyle} >
+                    <Button
+                        disabled={payload.noOfColorViews === 10 ? true : false}
+                        color="black"
+                        icon="add"
+                        onClick={payload.addColorView}
+                    />
+                    <Button
+                        disabled={payload.noOfColorViews === 2 ? true : false}
+                        color="black"
+                        icon="minus"
+                        onClick={payload.minusColorView}
+                    />
+                </Button.Group>
+                <Button.Group basic style={functionBtnStyle} >
+                    <Button
+                        color="black"
+                        icon="refresh"
+                        content="Generate"
+                        style={functionBtnStyle}
+                        onClick={payload.reloadColor}
+                    />
+                </Button.Group>
 
             </Menu.Item>
         </Menu>
