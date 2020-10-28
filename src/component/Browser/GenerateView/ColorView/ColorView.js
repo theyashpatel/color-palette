@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import VRHeader from 'component/Header/VRHeader'
 import { Header } from 'semantic-ui-react'
 import { calculateLuminance, getRandomColor } from '../../../../data/HelperFunctions'
 import nameOfColor from '../../../../data/NameTheColor'
@@ -11,7 +12,10 @@ export default function ColorView({ payload }) {
     const [fixvisibility, setfixvisibility] = useState("hidden")
     const [isFixed, setIsFixed] = useState(false)
     const [divcolor, setDivColor] = useState("lightseagreen")
-    const [luminance, setLuminance] = useState("#FFFFFF")
+    const [isDark, setIsDark] = useState(true)
+
+    // defines luminance threshold
+    const lt = 55
 
     // calculate color luminocity
     // based on the luminocity use black of white color
@@ -21,7 +25,7 @@ export default function ColorView({ payload }) {
         if (!isFixed) {
             setDivColor(() =>  {
               const hexCode =  getRandomColor()
-              setLuminance(() => calculateLuminance(hexCode))
+              setIsDark(() => calculateLuminance(hexCode) > lt)
               return hexCode
             })
 
@@ -63,22 +67,15 @@ export default function ColorView({ payload }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-          <img  
+          {/* <img  
                 className="lockImg"
                 style={lockImgStyle}
                 src={isFixed ? lock : unlock}
                 onClick={handleClick}
                 alt="lock"
-            />
-            <Header
-            as="h1"
-            style={{color: luminance > 55 ? "black" : "white", fontWeight: "bold", fontFamily: "Inter,sans-serif"}}
-            >{divcolor.slice(1,)}</Header>
-          <Header
-            as="h4"
-            style={{color: luminance > 55 ? "black" : "white", letterSpacing: "0.6rm", opacity: "0.6", fontFamily: "Inter,sans-serif", marginBottom: "40px"}}
-            >{nameOfColor(divcolor)}</Header>
-            
+            /> */}
+            <VRHeader dark={isDark} label={divcolor.slice(1,)} />
+            <VRHeader dark={isDark} subheader label={nameOfColor(divcolor)} />
         </div>
     )
 }
