@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { Flip, toast } from 'react-toastify';
 import { Header, Image } from 'semantic-ui-react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import nameOfColor from './data/NameTheColor';
 import AddOns from './component/AddOns';
 import BrowserViewLayout from './component/Browser/BrowserViewLayout';
 import workingImage from './images/astronaut.png'
@@ -19,21 +17,6 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize)
-  }
-
-  handleCopy(event) {
-    window.navigator.clipboard.writeText(event.target.id)
-    toast(nameOfColor(event.target.id) + " (" + event.target.id + ") is copied.", {
-      position: "bottom-center",
-      transition: Flip,
-      type: "info",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-    })
   }
 
   render() {

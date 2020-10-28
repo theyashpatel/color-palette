@@ -7,6 +7,9 @@ import lock from 'images/app/lock.png'
 import unlock from 'images/app/unlock.png'
 import darklock from 'images/app/darklock.png'
 import darkunlock from 'images/app/darkunlock.png'
+import copy from 'images/app/copy.png'
+import darkcopy from 'images/app/darkcopy.png'
+import { Flip, toast } from 'react-toastify'
 
 export default function ColorView({ payload }) {
 
@@ -50,13 +53,28 @@ export default function ColorView({ payload }) {
       })
     }
 
+    function handleCopyClick() {
+      window.navigator.clipboard.writeText(divcolor)
+      toast(nameOfColor(divcolor) + " (" + divcolor + ") is copied.", {
+      position: "bottom-center",
+      transition: Flip,
+      type: "info",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    })
+    }
+
     const colorViewStyle = {
         width: payload.viewWidth,
         backgroundColor: divcolor,
         margin: payload.margin
     }
 
-    const lockImgStyle = {
+    const imgStyle = {
         visibility: fixvisibility,
       }
 
@@ -69,7 +87,14 @@ export default function ColorView({ payload }) {
         >
           <img  
                 className="lockImg"
-                style={lockImgStyle}
+                style={imgStyle}
+                src={isDark ? darkcopy : copy}
+                onClick={handleCopyClick}
+                alt="lock"
+            />
+          <img  
+                className="lockImg"
+                style={imgStyle}
                 src={isDark ? (isFixed ? darklock : darkunlock) : (isFixed ? lock : unlock)}
                 onClick={handleClick}
                 alt="lock"
