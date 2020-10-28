@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import VRHeader from 'component/Header/VRHeader'
-import { Header } from 'semantic-ui-react'
 import { calculateLuminance, getRandomColor } from '../../../../data/HelperFunctions'
 import nameOfColor from '../../../../data/NameTheColor'
 import '../GenerateView.css'
-import lock from './lock.png'
-import unlock from './unlock.png'
+import lock from 'images/app/lock.png'
+import unlock from 'images/app/unlock.png'
+import darklock from 'images/app/darklock.png'
+import darkunlock from 'images/app/darkunlock.png'
 
 export default function ColorView({ payload }) {
 
@@ -57,7 +58,6 @@ export default function ColorView({ payload }) {
 
     const lockImgStyle = {
         visibility: fixvisibility,
-        color: "white"
       }
 
     return (
@@ -67,13 +67,13 @@ export default function ColorView({ payload }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-          {/* <img  
+          <img  
                 className="lockImg"
                 style={lockImgStyle}
-                src={isFixed ? lock : unlock}
+                src={isDark ? (isFixed ? darklock : darkunlock) : (isFixed ? lock : unlock)}
                 onClick={handleClick}
                 alt="lock"
-            /> */}
+            />
             <VRHeader dark={isDark} label={divcolor.slice(1,)} />
             <VRHeader dark={isDark} subheader label={nameOfColor(divcolor)} />
         </div>
