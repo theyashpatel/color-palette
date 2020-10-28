@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { calculateLuminance, getRandomColor, hexToRgb, hexToRgbDecimal } from '../../../../data/HelperFunctions'
+import { Header } from 'semantic-ui-react'
+import { calculateLuminance, getRandomColor } from '../../../../data/HelperFunctions'
+import nameOfColor from '../../../../data/NameTheColor'
 import '../GenerateView.css'
 import lock from './lock.png'
 import unlock from './unlock.png'
@@ -9,13 +11,20 @@ export default function ColorView({ payload }) {
     const [fixvisibility, setfixvisibility] = useState("hidden")
     const [isFixed, setIsFixed] = useState(false)
     const [divcolor, setDivColor] = useState("lightseagreen")
+    const [luminance, setLuminance] = useState("#FFFFFF")
+
+    // calculate color luminocity
+    // based on the luminocity use black of white color
   
     useEffect(() => {
 
         if (!isFixed) {
-            setDivColor(() =>  getRandomColor())
-            const hexCode = getRandomColor()
-            console.log("Luminance :",hexCode, calculateLuminance(hexCode))
+            setDivColor(() =>  {
+              const hexCode =  getRandomColor()
+              setLuminance(() => calculateLuminance(hexCode))
+              return hexCode
+            })
+
           }
 
     }, [payload.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -35,6 +44,7 @@ export default function ColorView({ payload }) {
         return !pstate
       })
     }
+
     const colorViewStyle = {
         width: payload.viewWidth,
         backgroundColor: divcolor,
@@ -42,7 +52,8 @@ export default function ColorView({ payload }) {
     }
 
     const lockImgStyle = {
-        visibility: fixvisibility
+        visibility: fixvisibility,
+        color: "white"
       }
 
     return (
@@ -52,13 +63,22 @@ export default function ColorView({ payload }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <img
+          <img  
                 className="lockImg"
                 style={lockImgStyle}
                 src={isFixed ? lock : unlock}
                 onClick={handleClick}
                 alt="lock"
             />
+            <Header
+            as="h1"
+            style={{color: luminance > 55 ? "black" : "white", fontWeight: "bold", fontFamily: "Inter,sans-serif"}}
+            >{divcolor.slice(1,)}</Header>
+          <Header
+            as="h4"
+            style={{color: luminance > 55 ? "black" : "white", letterSpacing: "0.6rm", opacity: "0.6", fontFamily: "Inter,sans-serif", marginBottom: "40px"}}
+            >{nameOfColor(divcolor)}</Header>
+            
         </div>
     )
 }
