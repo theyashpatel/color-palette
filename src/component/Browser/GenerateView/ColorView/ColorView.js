@@ -9,98 +9,74 @@ import darklock from 'images/app/darklock.png'
 import darkunlock from 'images/app/darkunlock.png'
 import copy from 'images/app/copy.png'
 import darkcopy from 'images/app/darkcopy.png'
-import { Flip, toast } from 'react-toastify'
+import FuncImgCV, { imgFunction } from './FuncImgCV'
 
 export default function ColorView({ payload }) {
 
-    const [fixvisibility, setfixvisibility] = useState("hidden")
-    const [isFixed, setIsFixed] = useState(false)
-    const [divcolor, setDivColor] = useState("lightseagreen")
-    const [isDark, setIsDark] = useState(true)
+  const [fixvisibility, setfixvisibility] = useState("hidden")
+  const [isFixed, setIsFixed] = useState(false)
+  const [divcolor, setDivColor] = useState("lightseagreen")
+  const [isDark, setIsDark] = useState(true)
 
-    // defines luminance threshold
-    const lt = 55
+  // defines luminance threshold
+  const lt = 55
 
-    // calculate color luminocity
-    // based on the luminocity use black of white color
-  
-    useEffect(() => {
+  // calculate color luminocity
+  // based on the luminocity use black of white color
 
-        if (!isFixed) {
-            setDivColor(() =>  {
-              const hexCode =  getRandomColor()
-              setIsDark(() => calculateLuminance(hexCode) > lt)
-              return hexCode
-            })
+  useEffect(() => {
 
-          }
-
-    }, [payload.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
-  
-    function handleMouseEnter() {
-      setfixvisibility(() => setfixvisibility(null))
-    }
-  
-    function handleMouseLeave() {
-      if (!isFixed) {
-        setfixvisibility(() => setfixvisibility("hidden"))
-      }
-    }
-  
-    function handleClick() {
-      setIsFixed(pstate => {
-        return !pstate
+    if (!isFixed) {
+      setDivColor(() => {
+        const hexCode = getRandomColor()
+        setIsDark(() => calculateLuminance(hexCode) > lt)
+        return hexCode
       })
     }
+  }, [payload.refresh]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    function handleCopyClick() {
-      window.navigator.clipboard.writeText(divcolor)
-      toast(nameOfColor(divcolor) + " (" + divcolor + ") is copied.", {
-      position: "bottom-center",
-      transition: Flip,
-      type: "info",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-    })
+  function handleMouseEnter() {
+    setfixvisibility(() => setfixvisibility(null))
+  }
+
+  function handleMouseLeave() {
+    if (!isFixed) {
+      setfixvisibility(() => setfixvisibility("hidden"))
     }
+  }
 
-    const colorViewStyle = {
-        width: payload.viewWidth,
-        backgroundColor: divcolor,
-        margin: payload.margin
-    }
+  const colorViewStyle = {
+    width: payload.viewWidth,
+    backgroundColor: divcolor,
+    margin: payload.margin
+  }
 
-    const imgStyle = {
-        visibility: fixvisibility,
-      }
+  return (
+    <div
+      className="colorViewDiv"
+      style={colorViewStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <FuncImgCV
+        payload={{
+          fixvisibility: fixvisibility,
+          divcolor: divcolor,
+          src: isDark ? darkcopy : copy,
+          imgFunction: imgFunction.COPYFN
+        }} />
 
-    return (
-        <div
-            className="colorViewDiv"
-            style={colorViewStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-          <img  
-                className="lockImg"
-                style={imgStyle}
-                src={isDark ? darkcopy : copy}
-                onClick={handleCopyClick}
-                alt="lock"
-            />
-          <img  
-                className="lockImg"
-                style={imgStyle}
-                src={isDark ? (isFixed ? darklock : darkunlock) : (isFixed ? lock : unlock)}
-                onClick={handleClick}
-                alt="lock"
-            />
-            <VRHeader dark={isDark} label={divcolor.slice(1,)} />
-            <VRHeader dark={isDark} subheader label={nameOfColor(divcolor)} />
-        </div>
-    )
+      <FuncImgCV
+        payload={{
+          fixvisibility: fixvisibility,
+          setIsFixed: setIsFixed,
+          divcolor: divcolor,
+          src: isDark ? (isFixed ? darklock : darkunlock) : (isFixed ? lock : unlock),
+          imgFunction: imgFunction.LOCKFN
+        }} />
+        
+      <VRHeader dark={isDark} label={divcolor.slice(1,)} />
+      <VRHeader dark={isDark} subheader label={nameOfColor(divcolor)} />
+    </div>
+  )
 }

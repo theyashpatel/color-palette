@@ -56,7 +56,6 @@ export default function GenerateView() {
 
       function minusColorView() {
         setNoOfColorViews(pstate => {
-            console.log(pstate)
             if (pstate > 2) {
                 return pstate - 1
             }
