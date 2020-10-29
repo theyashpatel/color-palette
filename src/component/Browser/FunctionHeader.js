@@ -33,11 +33,11 @@ export default function FunctionHeader({ payload }) {
                     } />
                 <Button.Group basic style={functionBtnStyle}>
                     <Button
-                        color="black"
+                        disabled
                         icon="undo"
                     />
                     <Button
-                        color="black"
+                        disabled
                         icon="redo"
                     />
                 </Button.Group>
@@ -45,20 +45,17 @@ export default function FunctionHeader({ payload }) {
                 <Button.Group basic style={functionBtnStyle} >
                     <Button
                         disabled={payload.noOfColorViews === 10 ? true : false}
-                        color="black"
                         icon="add"
                         onClick={payload.addColorView}
                     />
                     <Button
                         disabled={payload.noOfColorViews === 2 ? true : false}
-                        color="black"
                         icon="minus"
                         onClick={payload.minusColorView}
                     />
                 </Button.Group>
                 <Button.Group basic style={functionBtnStyle} >
                     <Button
-                        color="black"
                         icon="refresh"
                         content="Generate"
                         style={functionBtnStyle}
